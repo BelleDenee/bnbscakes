@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Your Cake – B&B's Cakes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <h1>B&B's Cakes</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="build.html">Build a Cake</a>
+    </nav>
+  </header>
+
+  <!-- Build Cake Form -->
+  <section class="contact">
+    <h2>Build Your Own Cake</h2>
+    <p>Fill out your custom cake request below:</p>
+
+    <form action="https://formspree.io/f/your-form-id" method="POST" class="cake-form">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="cake-type">Cake Type</label>
+      <select id="cake-type" name="cake-type" required>
+        <option value="">Choose one</option>
+        <option value="vanilla">Vanilla</option>
+        <option value="chocolate">Chocolate</option>
+        <option value="strawberry">Strawberry</option>
+        <option value="german-chocolate">German Chocolate</option>
+      </select>
+
+      <label for="frosting">Frosting</label>
+      <select id="frosting" name="frosting" required>
+        <option value="">Choose one</option>
+        <option value="buttercream">Buttercream</option>
+        <option value="cream-cheese">Cream Cheese</option>
+        <option value="whipped">Whipped</option>
+      </select>
+
+      <label for="message">Special Notes</label>
+      <textarea id="message" name="message" placeholder="Allergies, colors, pickup time, etc."></textarea>
+
+      <button type="submit" class="button">Submit Order Request</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 B&B's Cakes</p>
+  </footer>
+
+</body>
+</html>

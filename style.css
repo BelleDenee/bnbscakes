@@ -15,11 +15,12 @@ body {
 /* Navbar */
 .navbar {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 20px 40px;
   border-bottom: 2px solid #d1e8d1;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 600;
 }
 
 .navbar h1 {
@@ -29,11 +30,12 @@ body {
 }
 
 .navbar nav a {
-  margin-left: 20px;
+  margin-left: 25px;
   text-decoration: none;
   color: #5f7a61;
-  font-weight: bold;
+  font-weight: 600;
   transition: color 0.3s ease;
+  position: relative;
 }
 
 .navbar nav a:hover,
@@ -41,156 +43,132 @@ body {
   color: #3a5a40;
 }
 
-/* Hero Section */
-.hero {
-  background-image: url("assets/hero.jpg");
-  background-size: cover;
-  background-position: center;
-  padding: 100px 20px;
-  text-align: center;
-  color: #ffffff;
-  position: relative;
+/* Cart Count Badge */
+.cart-count {
+  background-color: #3a5a40;
+  color: white;
+  padding: 2px 7px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  vertical-align: super;
+  margin-left: 6px;
+  display: none; /* Hidden if zero */
 }
 
-.hero::after {
-  content: "";
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 420px;
+  background-image: url('assets/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+  font-family: 'Georgia', serif;
+}
+
+.hero-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(58, 90, 64, 0.5);
+  background-color: rgba(58, 90, 64, 0.6);
   z-index: 0;
 }
 
-.hero h2,
-.hero p {
+.hero-content {
   position: relative;
   z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.hero h2 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 12px;
 }
 
-.hero p {
-  font-size: 1.2rem;
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
-/* Smaller Hero (for other pages) */
-.hero-small {
-  background-color: #e3f4e3;
-  padding: 60px 20px;
+/* Button */
+.btn-action {
+  background-color: #3a5a40;
+  border: none;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+.btn-action:hover {
+  background-color: #2e4e30;
+}
+
+/* Popular Section */
+.section-popular {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
   text-align: center;
 }
 
-.hero-small h2 {
-  font-size: 2rem;
+.section-popular h2 {
+  font-family: 'Georgia', serif;
   color: #3a5a40;
-  margin-bottom: 10px;
-}
-
-.hero-small p {
-  color: #5f7a61;
-}
-
-/* Sections */
-section {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* Build Form */
-form {
-  background-color: #ffffff;
-  border: 2px solid #d1e8d1;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-form label {
-  display: block;
-  margin: 15px 0 5px;
-  color: #3a5a40;
-}
-
-form input[type="text"],
-form select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #bcd9bc;
-  border-radius: 5px;
-}
-
-form button {
-  margin-top: 20px;
-  background-color: #3a5a40;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-form button:hover {
-  background-color: #2e4e30;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
 }
 
 /* Gallery Cards */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
 }
 
 .cake-card {
   background-color: white;
   border: 2px solid #e6f0e6;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .cake-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transform: translateY(-7px);
+  box-shadow: 0 12px 22px rgba(0,0,0,0.15);
 }
 
 .cake-card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
 }
 
 .cake-card h3 {
-  font-size: 1.3rem;
-  margin: 15px 0 5px;
+  font-size: 1.2rem;
+  padding: 15px 10px 20px;
   color: #3a5a40;
-}
-
-.cake-card p {
-  padding: 0 15px 10px;
-  font-size: 0.95rem;
-  color: #444;
-}
-
-.price {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #527c52;
-  display: block;
-  padding-bottom: 15px;
+  font-family: 'Georgia', serif;
 }
 
 /* Footer */
 footer {
   background-color: #e6f0e6;
   text-align: center;
-  padding: 20px;
+  padding: 22px 10px;
   color: #3a5a40;
   font-size: 0.9rem;
+  margin-top: 60px;
 }

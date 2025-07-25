@@ -2,56 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Build Your Cake – B&B's Cakes</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
 
-  <!-- Navigation -->
   <header class="navbar">
     <h1>B&B's Cakes</h1>
     <nav>
       <a href="index.html">Home</a>
-      <a href="build.html">Build a Cake</a>
+      <a href="build.html" class="active">Build a Cake</a>
+      <a href="popular.html">Popular Cakes</a>
+      <a href="cart.html">Cart</a>
     </nav>
   </header>
 
-  <!-- Build Cake Form -->
-  <section class="contact">
-    <h2>Build Your Own Cake</h2>
-    <p>Fill out your custom cake request below:</p>
+  <main>
+    <section class="contact">
 
-    <form action="https://formspree.io/f/your-form-id" method="POST" class="cake-form">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required />
+      <h2>Build Your Own Cake</h2>
 
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="phone" required />
+      <!-- Step 1: Choose Cake Base -->
+      <div id="step1">
+        <h3>Choose Your Cake Base</h3>
+        <button type="button" onclick="selectBase('White Cake')">White Cake</button>
+        <button type="button" onclick="selectBase('Yellow Cake')">Yellow Cake</button>
+        <button type="button" onclick="selectBase('Chocolate Cake')">Chocolate Cake</button>
+        <button type="button" onclick="selectBase('Red Velvet')">Red Velvet</button>
+        <button type="button" onclick="selectBase('Strawberry Cake')">Strawberry Cake</button>
+        <button type="button" onclick="selectBase('Carrot Cake')">Carrot Cake</button>
+        <button type="button" onclick="selectBase('Other')">Other (Specify Later)</button>
+      </div>
 
-      <label for="cake-type">Cake Type</label>
-      <select id="cake-type" name="cake-type" required>
-        <option value="">Choose one</option>
-        <option value="vanilla">Vanilla</option>
-        <option value="chocolate">Chocolate</option>
-        <option value="strawberry">Strawberry</option>
-        <option value="german-chocolate">German Chocolate</option>
-      </select>
+      <!-- Step 2: Choose Frosting -->
+      <div id="step2" style="display:none;">
+        <h3>Choose Your Frosting</h3>
+        <button type="button" onclick="selectFrosting('Buttercream')">Buttercream</button>
+        <button type="button" onclick="selectFrosting('Cream Cheese')">Cream Cheese</button>
+        <button type="button" onclick="selectFrosting('Whipped Cream')">Whipped Cream</button>
+        <button type="button" onclick="selectFrosting('Chocolate Ganache')">Chocolate Ganache</button>
+        <button type="button" onclick="selectFrosting('Other')">Other (Specify Later)</button>
+      </div>
 
-      <label for="frosting">Frosting</label>
-      <select id="frosting" name="frosting" required>
-        <option value="">Choose one</option>
-        <option value="buttercream">Buttercream</option>
-        <option value="cream-cheese">Cream Cheese</option>
-        <option value="whipped">Whipped</option>
-      </select>
+      <!-- Step 3: Add Wording -->
+      <div id="step3" style="display:none;">
+        <h3>Add Wording (Optional)</h3>
+        <label for="wording">Text to write on cake:</label><br />
+        <input type="text" id="wording" name="wording" placeholder="e.g. Happy Birthday!" /><br /><br />
 
-      <label for="message">Special Notes</label>
-      <textarea id="message" name="message" placeholder="Allergies, colors, pickup time, etc."></textarea>
+        <label for="wordingColor">Choose color:</label><br />
+        <input type="color" id="wordingColor" name="wordingColor" value="#4a6b48" /><br /><br />
 
-      <button type="submit" class="button">Submit Order Request</button>
-    </form>
-  </section>
+        <button type="button" onclick="submitWording()">Add to Cart</button>
+        <button type="button" onclick="skipWording()">Skip Wording</button>
+      </div>
+
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 B&B's Cakes</p>

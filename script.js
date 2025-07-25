@@ -1,5 +1,10 @@
-// Cart array to hold orders
-let cart = [];
+// Load or initialize cart from localStorage
+let cart = JSON.parse(localStorage.getItem('bnbscakes_cart')) || [];
+
+// Save cart to localStorage helper
+function saveCart() {
+  localStorage.setItem('bnbscakes_cart', JSON.stringify(cart));
+}
 
 // BUILD YOUR OWN CAKE FLOW
 let currentStep = 0;
@@ -14,73 +19,72 @@ const steps = [
   document.getElementById('step1'),
   document.getElementById('step2'),
   document.getElementById('step3'),
-  document.getElementById('step4'),
-  document.getElementById('step5')
+  document.getElementById('step4')
 ];
 
+// Show the current step only
 function showStep(step) {
   steps.forEach((s, index) => {
-    s.style.display = (index === step) ? 'block' : 'none';
+    if(s) s.style.display = (index === step) ? 'block' : 'none';
   });
 }
 
+// Select cake base and move to next step
 function selectBase(value) {
   cakeOrder.base = value;
   currentStep = 1;
   showStep(currentStep);
 }
 
+// Select frosting and move to next step
 function selectFrosting(value) {
   cakeOrder.frosting = value;
   currentStep = 2;
   showStep(currentStep);
 }
 
-function enterWording() {
-  const wordingInput = document.getElementById('wording').value;
+// Proceed to wording step
+function toWordingStep() {
+  currentStep = 2;
+  showStep(currentStep);
+}
+
+// Handle wording submission or skip
+function submitWording() {
+  const wordingInput = document.getElementById('wording').value.trim();
   const wordingColorInput = document.getElementById('wordingColor').value;
 
   cakeOrder.wording = wordingInput;
   cakeOrder.wordingColor = wordingColorInput;
 
-  currentStep = 3;
-  showStep(currentStep);
+  addToCart();
 }
 
 function skipWording() {
   cakeOrder.wording = "";
   cakeOrder.wordingColor = "";
-  currentStep = 3;
-  showStep(currentStep);
+  addToCart();
 }
 
-function reviewOrder() {
-  const reviewBox = document.getElementById('reviewBox');
-  reviewBox.innerHTML = `
-    <h3>Your Cake:</h3>
-    <p><strong>Base:</strong> ${cakeOrder.base}</p>
-    <p><strong>Frosting:</strong> ${cakeOrder.frosting}</p>
-    ${cakeOrder.wording ? `<p><strong>Wording:</strong> ${cakeOrder.wording} in ${cakeOrder.wordingColor}</p>` : ""}
-  `;
-  currentStep = 4;
-  showStep(currentStep);
-}
-
+// Add current cake order to cart and save
 function addToCart() {
   cart.push({ ...cakeOrder });
-  alert("Cake added to cart!");
-  window.location.href = "index.html"; // Redirect to homepage after adding
+  saveCart();
+  alert("Your cake has been added to the cart!");
+  window.location.href = "cart.html";
 }
 
 // POPULAR CAKES SELECTION
 function addPopularCake(cakeName) {
   cart.push({ name: cakeName });
+  saveCart();
   alert(`${cakeName} added to cart!`);
+  window.location.href = "cart.html";
 }
 
-// Initial display setup
+// On page load, initialize build form steps if they exist
 document.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('buildFlow')) {
+  if (document.getElementById('step1')) {
     showStep(0);
   }
 });

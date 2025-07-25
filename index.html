@@ -2,52 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>B&B's Cakes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>B&B's Cakes - Homemade. Affordable. Sweet.</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
 
-  <!-- Navigation -->
   <header class="navbar">
     <h1>B&B's Cakes</h1>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="#gallery">Gallery</a>
+      <a href="index.html" class="active">Home</a>
       <a href="build.html">Build a Cake</a>
-      <a href="#contact">Contact</a>
+      <a href="popular.html">Popular Cakes</a>
+      <a href="cart.html">Cart <span id="cart-count" class="cart-count">0</span></a>
     </nav>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h2>Delicious, Affordable Cakes</h2>
-      <p>Just like H-E-B — but better priced and full of love.</p>
-      <a href="build.html" class="button">Order Now</a>
+      <h2>Homemade. Affordable. Sweet.</h2>
+      <p>Delivery only. (FREE) Delivery times available after 3pm.</p>
+      <button onclick="window.location.href='build.html'" class="btn-action">BUILD YOUR OWN CAKE</button>
     </div>
   </section>
 
-  <!-- Gallery Preview -->
-  <section id="gallery" class="gallery">
-    <h3>Our Cakes</h3>
-    <div class="gallery-grid">
-      <img src="assets/cake1.jpg" alt="Cake 1" />
-      <img src="assets/cake2.jpg" alt="Cake 2" />
-      <img src="assets/cake3.jpg" alt="Cake 3" />
+  <section class="section-popular">
+    <h2>Popular Choices</h2>
+    <div class="gallery">
+      <div class="cake-card" onclick="addPopularCake('German Chocolate')">
+        <img src="assets/german_chocolate.jpg" alt="German Chocolate Cake" />
+        <h3>German Chocolate</h3>
+      </div>
+      <div class="cake-card" onclick="addPopularCake('Carrot Cake')">
+        <img src="assets/carrot_cake.jpg" alt="Carrot Cake" />
+        <h3>Carrot Cake</h3>
+      </div>
+      <div class="cake-card" onclick="addPopularCake('Tres Leche')">
+        <img src="assets/tres_leche.jpg" alt="Tres Leche Cake" />
+        <h3>Tres Leche</h3>
+      </div>
+      <div class="cake-card" onclick="addPopularCake('Red Velvet')">
+        <img src="assets/red_velvet.jpg" alt="Red Velvet Cake" />
+        <h3>Red Velvet</h3>
+      </div>
+      <div class="cake-card" onclick="addPopularCake('Upside Down Cake')">
+        <img src="assets/upside_down.jpg" alt="Upside Down Cake" />
+        <h3>Upside Down Cake</h3>
+      </div>
+      <div class="cake-card" onclick="addPopularCake('Cheesecake')">
+        <img src="assets/cheesecake.jpg" alt="Cheesecake" />
+        <h3>Cheesecake</h3>
+      </div>
     </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h3>Contact Us</h3>
-    <p>Email: orders@bnbscakes.com</p>
-    <p>Phone: (555) 123-4567</p>
-    <p>Instagram: <a href="https://instagram.com/yourpage" target="_blank">@bnbscakes</a></p>
   </section>
 
   <footer>
-    <p>&copy; 2025 B&B's Cakes. All rights reserved.</p>
+    <p>&copy; 2025 B&B's Cakes</p>
   </footer>
 
 </body>

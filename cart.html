@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart – B&B's Cakes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <h1>B&B's Cakes</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="build.html">Build a Cake</a>
+      <a href="popular.html">Popular Cakes</a>
+      <a href="cart.html" class="active">Cart</a>
+    </nav>
+  </header>
+
+  <section class="contact">
+    <h2>Your Cart</h2>
+    <div id="cartItems">
+      <!-- Cart items will appear here -->
+    </div>
+
+    <div id="emptyMessage" style="display:none;">
+      <p>Your cart is empty.</p>
+      <a href="index.html" class="button">Back to Home</a>
+    </div>
+
+    <button id="checkoutBtn" class="button" style="display:none;">Proceed to Checkout</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 B&B's Cakes</p>
+  </footer>
+
+  <script>
+    // Load cart from localStorage
+    const cartItemsDiv = document.getElementById('cartItems');
+    const emptyMessage = document.getElementById('emptyMessage');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    let cart = JSON.parse(localStorage.getItem('bnbscakes_cart')) || [];
+
+    function renderCart() {
+      if (cart.length === 0) {
+        emptyMessage.style.display = 'block';
+        checkoutBtn.style.display = 'none';
+        cartItemsDiv.innerHTML = '';
+        return;
+      }
+
+      emptyMessage.style.display = 'none';
+      checkoutBtn.style.display = 'inline-block';
+
+      cartItemsDiv.innerHTML = '';
+
+      cart.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.classList.add('cake-card');
+        let html = '';
+
+        if (item.base) {
+          // Custom cake
+          html += `<h3>Custom Cake</h3>`;
+          html += `<p><strong>Base:</strong> ${item.base}</p>`;
+          html += `<p><strong>Frosting:</strong> ${item.frosting}</p>`;
+          if(item.wording){
+            html += `<p><strong>Wording:</strong> ${item.wording} (${item.wordingColor})</p>`;
+          }
+        } else if(item.name){
+          // Popular cake
+          html += `<h3>${item.name}</h3>`;
+        } else {
+          html += `<p>Unknown item</p>`;
+        }
+
+        html += `<button onclick="removeFromCart(${index})" class="button" style="background:#a94442; margin-top:10px;">Remove</button>`;
+
+        div.innerHTML = html;
+        cartItemsDiv.appendChild(div);
+      });
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('bnbscakes_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    checkoutBtn.addEventListener('click', () => {
+      alert('Checkout coming soon! For now, please contact us directly to complete your order.');
+      // You can replace above with redirect to payment gateway or order form
+    });
+
+    renderCart();
+  </script>
+
+</body>
+</html>
